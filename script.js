@@ -1,10 +1,12 @@
 const random = function (num) {
+    let tries = 10;
 
     const checkInput = function () {
         let playersNumber = prompt("Введите число от 1 до 100:");
 
-        const numberInput = function (num) {                                //проверяем пользовательский ввод и если надо - приводим к числу
-            const isNumber = function (num) {
+        const numberInput = function(num) {                                //проверяем пользовательский ввод и если надо - приводим к числу
+
+            const isNumber = function(num) {
                 return !isNaN(parseFloat(num)) && isFinite(num);
             };
             if (isNumber(num)) {
@@ -14,22 +16,33 @@ const random = function (num) {
         };
 
         const playersGuess = function () {                                  // Рекурсивно спрашиваем игрока число, если не равно загаданному
-                if (playersNumber < num){
-                    console.log("Загаданное число больше");
+                if (playersNumber < num && tries > 1){
+
+                    console.log(`Загаданное число больше, осталось попыток ${--tries}`);
+
                     checkInput();
-                } else if(playersNumber > num) {
-                    console.log("Загаданное число меньше");
+                } else if(playersNumber > num && tries > 1) {
+                    console.log(`Загаданное число меньше, осталось попыток ${--tries}`);
                     checkInput();
-                } else if (playersNumber !== playersNumber){
-                    console.log("Игра окончена")
+                } else if (tries == 1) {
+                    const newGame = confirm("Попытки закончились, хотите сыграть еще?");
+                    if (newGame){
+                        tries = 10;
+                        random();
+                    }
                     return;
                 } else {
-                    console.log("Поздравляю, Вы угадали!!!");
+                    const newGame = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
+                    if (newGame){
+                        tries = 10;
+                        random();
+                    };
                     return;
                 };
             };
             if (!playersNumber){                                            // Проверяем на false ввод пользователя
                 console.log("Игра окончена");
+                return;
             } else if (!numberInput(playersNumber)){                        // Проверяем на введено ли число, нет - алертим
                 alert("Введите число!");
                 checkInput();

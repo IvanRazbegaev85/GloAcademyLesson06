@@ -20,9 +20,6 @@ const random = function (num) {
                 } else if(playersNumber > num) {
                     console.log("Загаданное число меньше");
                     checkInput();
-                } else if (playersNumber !== playersNumber){
-                    console.log("Игра окончена")
-                    return;
                 } else {
                     console.log("Поздравляю, Вы угадали!!!");
                     return;

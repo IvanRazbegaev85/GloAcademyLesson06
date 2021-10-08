@@ -1,4 +1,5 @@
-const random = function (num) {
+const random = function () {
+    let num = (Math.random()*100).toFixed();
     let tries = 10;
 
     const checkInput = function () {
@@ -27,14 +28,12 @@ const random = function (num) {
                 } else if (tries == 1) {
                     const newGame = confirm("Попытки закончились, хотите сыграть еще?");
                     if (newGame){
-                        tries = 10;
                         random();
                     }
                     return;
                 } else {
                     const newGame = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
                     if (newGame){
-                        tries = 10;
                         random();
                     };
                     return;
@@ -53,7 +52,7 @@ const random = function (num) {
 
 };
 
-random((Math.random()*100).toFixed());
+random();
 
 
 

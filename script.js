@@ -19,11 +19,11 @@ const random = function () {
         const playersGuess = function () {                                  // Рекурсивно спрашиваем игрока число, если не равно загаданному
                 if (playersNumber < num && tries > 1){
 
-                    console.log(`Загаданное число больше, осталось попыток ${--tries}`);
+                    alert(`Загаданное число больше, осталось попыток ${--tries}`);
 
                     checkInput();
                 } else if(playersNumber > num && tries > 1) {
-                    console.log(`Загаданное число меньше, осталось попыток ${--tries}`);
+                    alert(`Загаданное число меньше, осталось попыток ${--tries}`);
                     checkInput();
                 } else if (tries == 1) {
                     const newGame = confirm("Попытки закончились, хотите сыграть еще?");
@@ -35,12 +35,12 @@ const random = function () {
                     const newGame = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
                     if (newGame){
                         random();
-                    };
+                    }
                     return;
-                };
+                }
             };
             if (!playersNumber){                                            // Проверяем на false ввод пользователя
-                console.log("Игра окончена");
+                alert("Игра окончена");
                 return;
             } else if (!numberInput(playersNumber)){                        // Проверяем на введено ли число, нет - алертим
                 alert("Введите число!");
